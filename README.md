@@ -30,7 +30,7 @@ chargo [OPTIONS] <mode> -i <input> -p <pwd>
 ```bash
 -i <input>         Input file path
 -o <output>        Out file path. If it is not provided, Chargo will override input file
--p <pwd>           Sets password
+-p <pwd>           Path to a password file
 ```
 
 ## **Args**
@@ -44,10 +44,10 @@ chargo [OPTIONS] <mode> -i <input> -p <pwd>
 **In-Terminal usage**
 
 ```bash
-chargo encrypt -p supadupapassword -i myfile.txt -o myfile.chargo
+chargo encrypt -p password.txt -i myfile.txt -o myfile.chargo
 ```
 ```bash
-chargo decrypt -p supadupapassword -i myfile.chargo -o myfile.txt
+chargo decrypt -p password.txt -i myfile.chargo -o myfile.txt
 ```
 
 **In-Code usage**
