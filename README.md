@@ -1,6 +1,6 @@
 # [![Latest Version](https://img.shields.io/crates/v/chargo.svg)](https://crates.io/crates/chargo) | [Documentation](https://docs.rs/chargo)
 
-**Chargo** is a tool for file encryption/decryption. It's based on Argon2 and ChaCha20Poly1305 algorithms. From arg2u with ♥
+**Chargo** is a tool for file encryption/decryption with password. It's based on Argon2 and ChaCha20Poly1305 algorithms. From arg2u with ♥
 
 ## **Requirments**
 

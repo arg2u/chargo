@@ -1,3 +1,4 @@
+use spinners_rs::{Spinner, Spinners};
 use std::path::PathBuf;
 use structopt::StructOpt;
 
@@ -6,7 +7,7 @@ use chargo::{decrypt_from_file, encrypt_to_file, error::Error};
 #[derive(Debug, StructOpt)]
 #[structopt(
     name = "Chargo",
-    about = "Chargo is a tool for file encryption/decryption. It's based on Argon2 and ChaCha20Poly1305 algorithms."
+    about = "Chargo is a tool for file encryption/decryption with password. It's based on Argon2 and ChaCha20Poly1305 algorithms."
 )]
 struct Opt {
     /// Sets mode decrypt or encrypt
@@ -34,9 +35,13 @@ enum Mode {
 
 fn main() -> Result<(), Error> {
     let opt = Opt::from_args();
+    let mut sp = Spinner::new(Spinners::Aesthetic, "Encrypting ...");
     if opt.mode == "encrypt" {
+        sp.start();
         encrypt_to_file(opt.pwd.into(), opt.input, opt.output)?;
     } else if opt.mode == "decrypt" {
+        sp.set_message("Decrypting ...");
+        sp.start();
         decrypt_from_file(opt.pwd.into(), opt.input, opt.output)?;
     } else {
         panic!("Wrong mode. It could be decrypt or encrypt");
