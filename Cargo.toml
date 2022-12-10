@@ -1,6 +1,6 @@
 [package]
 name = "chargo"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 license = "MIT"
 description = "Chargo is a tool for file encryption/decryption with password. It's based on Argon2 and ChaCha20Poly1305 algorithms."
