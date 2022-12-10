@@ -1,0 +1,24 @@
+[package]
+name = "chargo"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Chargo is a tool for file encryption/decryption. It's based on Argon2 and ChaCha20Poly1305 algorithms."
+exclude=[".DS_Store"]
+repository = "https://github.com/arg2u/chargo"
+documentation="https://docs.rs/chargo"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "chargo"
+subrut = "src/lib.rs"
+doctest = true
+doc = true
+crate-type = ["lib"]
+
+[dependencies]
+rust-argon2 = "1.0"
+chacha20poly1305 = "0.10.1"
+rand = "0.8.4"
+structopt = { version = "0.3", default-features = false }
