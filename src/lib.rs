@@ -22,7 +22,7 @@ const HASH_SALT_LEN: usize = 16;
 const NONCE: &[u8; 12] = &[0; 12];
 
 /// Encrypts provided file with the specified password
-/// `pwd` - password
+/// `pwd` - path to a file with a password
 /// `file_path` - file to encrypt
 /// `output_path` - option file to write a result
 /// ```
@@ -34,11 +34,12 @@ const NONCE: &[u8; 12] = &[0; 12];
 /// }
 /// ```
 pub fn encrypt_to_file(
-    pwd: Vec<u8>,
+    pwd: PathBuf,
     mut file_path: PathBuf,
     output_path: Option<PathBuf>,
 ) -> Result<bool, Error> {
     let file_data = read(&file_path)?;
+    let pwd = read(pwd)?;
     let data = encrypt(&pwd, &file_data)?;
     if let Some(opath) = output_path {
         file_path = opath
@@ -48,7 +49,7 @@ pub fn encrypt_to_file(
 }
 
 /// Decrypts provided file with the specified password
-/// `pwd` - password
+/// `pwd` - path to a file with a password
 /// `file_path` - file to decrypt
 /// `output_path` - option file to write a result
 /// ```
@@ -60,11 +61,12 @@ pub fn encrypt_to_file(
 /// }
 /// ```
 pub fn decrypt_from_file(
-    pwd: Vec<u8>,
+    pwd: PathBuf,
     mut file_path: PathBuf,
     output_path: Option<PathBuf>,
 ) -> Result<bool, Error> {
     let file = File::open(&file_path)?;
+    let pwd = read(pwd)?;
     let mut reader = BufReader::new(file);
     let data = decrypt(&pwd, &mut reader)?;
     if let Some(opath) = output_path {

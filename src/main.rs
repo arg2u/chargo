@@ -12,9 +12,9 @@ use chargo::{decrypt_from_file, encrypt_to_file, error::Error};
 struct Opt {
     /// Sets mode decrypt or encrypt
     mode: String,
-    /// Sets password
+    /// Path to a password file
     #[structopt(short = "p")]
-    pwd: String,
+    pwd: PathBuf,
 
     /// Input file path
     #[structopt(short = "i", parse(from_os_str))]
@@ -38,11 +38,11 @@ fn main() -> Result<(), Error> {
     let mut sp = Spinner::new(Spinners::Aesthetic, "Encrypting ...");
     if opt.mode == "encrypt" {
         sp.start();
-        encrypt_to_file(opt.pwd.into(), opt.input, opt.output)?;
+        encrypt_to_file(opt.pwd, opt.input, opt.output)?;
     } else if opt.mode == "decrypt" {
         sp.set_message("Decrypting ...");
         sp.start();
-        decrypt_from_file(opt.pwd.into(), opt.input, opt.output)?;
+        decrypt_from_file(opt.pwd, opt.input, opt.output)?;
     } else {
         panic!("Wrong mode. It could be decrypt or encrypt");
     }
