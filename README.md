@@ -56,8 +56,8 @@ use chargo::{encrypt_to_file, decrypt_from_file};
 use std::path::PathBuf;
 
 fn main() {
-    encrypt_to_file("pwd".into(), PathBuf::from("file.txt"), Some(PathBuf::from("file.chargo"))).unwrap();
-    decrypt_from_file("pwd".into(), PathBuf::from("file.chargo"), Some(PathBuf::from("file.txt"))).unwrap();
+    encrypt_to_file(PathBuf::from("pwd.txt"), PathBuf::from("file.txt"), Some(PathBuf::from("file.chargo"))).unwrap();
+    decrypt_from_file(PathBuf::from("pwd.txt"), PathBuf::from("file.chargo"), Some(PathBuf::from("file.txt"))).unwrap();
 }
 ```
 

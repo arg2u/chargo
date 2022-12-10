@@ -30,7 +30,7 @@ const NONCE: &[u8; 12] = &[0; 12];
 /// use std::path::PathBuf;
 ///
 /// fn main() {
-///     encrypt_to_file("pwd".into(), PathBuf::from("test.txt"), Some(PathBuf::from("test.chargo"))).unwrap();
+///     encrypt_to_file(PathBuf::from("pwd.txt"), PathBuf::from("test.txt"), Some(PathBuf::from("test.chargo"))).unwrap();
 /// }
 /// ```
 pub fn encrypt_to_file(
@@ -57,7 +57,7 @@ pub fn encrypt_to_file(
 /// use std::path::PathBuf;
 ///
 /// fn main() {
-///     decrypt_from_file("pwd".into(), PathBuf::from("test.chargo"), Some(PathBuf::from("test_dec.txt"))).unwrap();
+///     decrypt_from_file(PathBuf::from("pwd.txt"), PathBuf::from("test.chargo"), Some(PathBuf::from("test_dec.txt"))).unwrap();
 /// }
 /// ```
 pub fn decrypt_from_file(
